@@ -1,0 +1,29 @@
+INCIO
+
+clicar no campo "Nota Fiscal:" Point(x=131, y=67) sleep 0.5
+
+digitar numero nf sleep 0.5
+
+clicar ENTER sleep 3s
+
+clicar ENTER sleep 1s
+
+clicar em Point(x=508, y=1015) sleep 1s
+
+clicar ENTER 1X sleep 1s
+
+clicar em (x=330, y=1009) sleep 2s
+
+clicar ícone adobe: Point(x=83, y=38) sleep 1s
+
+clicar ENTER sleep 1s
+
+digitar "DANFE (NÚMERO DA NOTA FISCAL QUE ESTÁ SENDO SALVA)" sleep 0.5
+
+clicar ENTER sleep 1s
+
+clicar ESC 2x interval 0.5 sleep 0.5
+
+FIM
+
+repetir o processo
