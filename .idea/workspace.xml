@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68f69be5-00e5-4c71-99de-1fbc63d38445" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SalvadorNotasFiscais.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/automacao_neo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/click_pos.py" afterDir="false" />
+    <list default="true" id="68f69be5-00e5-4c71-99de-1fbc63d38445" name="Changes" comment="primeira versao funcionando 100%">
+      <change beforePath="$PROJECT_DIR$/automacao_neo.py" beforeDir="false" afterPath="$PROJECT_DIR$/automacao_neo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,16 +63,29 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754663910275</updated>
-      <workItem from="1754663911285" duration="8457000" />
+      <workItem from="1754663911285" duration="9321000" />
     </task>
+    <task id="LOCAL-00001" summary="primeira versao funcionando 100%">
+      <option name="closed" value="true" />
+      <created>1754672558983</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754672558983</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="primeira versao funcionando 100%" />
+    <option name="LAST_COMMIT_MESSAGE" value="primeira versao funcionando 100%" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$coordinates.coverage" NAME="coordinates Coverage Results" MODIFIED="1754666833852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$automacao_neo.coverage" NAME="automacao_neo Coverage Results" MODIFIED="1754671585761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$automacao_neo.coverage" NAME="automacao_neo Coverage Results" MODIFIED="1754672679404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$click_pos.coverage" NAME="click_pos Coverage Results" MODIFIED="1754669423070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

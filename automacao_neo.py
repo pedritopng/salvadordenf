@@ -1,106 +1,169 @@
 import pyautogui
 import time
 import pandas as pd
+import tkinter as tk
+from tkinter import filedialog
 
-# --- CONFIGURAÇÃO E FUNÇÕES AUXILIARES ---
+# --- CONFIGURAÇÕES E PARÂMETROS ---
+
 # Medida de segurança: Leve o mouse para o canto superior esquerdo para parar o script.
 pyautogui.FAILSAFE = True
 
-# --- CARREGANDO OS DADOS DO ARQUIVO CSV ---
-# O nome do arquivo deve ser exatamente igual ao que está na pasta.
-nome_do_arquivo_csv = 'TESTE_LISTA_NF.csv'
+# Coordenadas dos cliques (ajuste aqui se a janela ou os botões mudarem de lugar)
+CAMPO_NOTA_FISCAL = (131, 67)
+BOTAO_IMPRIMIR_TELA_PRINCIPAL = (508, 1015)
+BOTAO_IMPRIMIR_TELA_SECUNDARIA = (330, 1009)
+ICONE_GERAR_PDF = (83, 38)
 
-try:
-    # --- CORREÇÃO APLICADA ---
-    # Adicionado delimiter=';' pois arquivos CSV no Brasil geralmente usam ponto e vírgula como separador.
-    df = pd.read_csv(nome_do_arquivo_csv, encoding='latin-1', delimiter=';')
 
-    # Remove espaços em branco do início e do fim dos nomes das colunas.
-    df.columns = df.columns.str.strip()
+# --- FUNÇÕES DE AUTOMAÇÃO ---
 
-    # Pega apenas os valores ÚNICOS da coluna "NOTA FISCAL" para evitar processar a mesma nota várias vezes.
-    notas_unicas = df['NOTA FISCAL'].unique()
+def selecionar_arquivo():
+    """Abre uma janela para o usuário selecionar a planilha de notas fiscais."""
+    root = tk.Tk()
+    root.withdraw()  # Esconde a janela principal do tkinter
 
-    # Converte a lista de notas para uma lista de strings para digitação.
-    lista_de_notas = [str(nota) for nota in notas_unicas]
+    caminho_arquivo = filedialog.askopenfilename(
+        title="Selecione a planilha de notas fiscais",
+        filetypes=(("Arquivos de Planilha", "*.csv *.xlsx"), ("Todos os arquivos", "*.*"))
+    )
 
-    print(f"Arquivo CSV '{nome_do_arquivo_csv}' carregado com sucesso.")
-    print(f"{len(lista_de_notas)} notas fiscais ÚNICAS foram encontradas para automação.")
+    return caminho_arquivo
 
-except FileNotFoundError:
-    print(
-        f"ERRO CRÍTICO: Planilha '{nome_do_arquivo_csv}' não encontrada. Verifique se o nome está correto e se o arquivo está na mesma pasta do script.")
-    exit()  # Encerra o script se não encontrar a planilha
-except KeyError:
-    print(
-        f"ERRO CRÍTICO: A coluna 'NOTA FISCAL' não foi encontrada na planilha. Verifique se o nome da coluna está correto no arquivo CSV.")
-    exit()  # Encerra o script se a coluna não existir
 
-# --- INÍCIO DA AUTOMAÇÃO ---
-print("\nAutomação iniciando em 5 segundos...")
-print("Por favor, deixe a janela do sistema NEO em primeiro plano e não mexa no mouse ou teclado.")
-time.sleep(5)
-
-# Loop principal que passa por cada nota da sua lista de notas únicas
-for numero_da_nota_atual in lista_de_notas:
-    print(f"\n==================================================")
-    print(f"--- Processando a Nota Fiscal: {numero_da_nota_atual} ---")
-    print(f"==================================================")
+def carregar_dados_notas(caminho_arquivo):
+    """Lê o arquivo CSV ou Excel, trata os dados e retorna uma lista de notas únicas."""
+    if not caminho_arquivo:
+        print("Nenhum arquivo selecionado.")
+        return None
 
     try:
-        pyautogui.doubleClick(131, 67, duration=0.25)
-        time.sleep(0.1)
-        pyautogui.write(numero_da_nota_atual, interval=0.05)
-        print(f"OK - Número da nota '{numero_da_nota_atual}' digitado.")
-        time.sleep(0.25)
-        pyautogui.press('enter', presses=1, interval=0.5)
-        print("OK - ENTER para buscar.")
-        time.sleep(0.5)
+        # Verifica a extensão do arquivo para usar a função de leitura correta
+        if caminho_arquivo.endswith('.csv'):
+            # Lê o CSV usando ponto e vírgula como separador e codificação latin-1
+            df = pd.read_csv(caminho_arquivo, encoding='latin-1', delimiter=';')
+        elif caminho_arquivo.endswith('.xlsx'):
+            # Lê o arquivo Excel
+            df = pd.read_excel(caminho_arquivo)
+        else:
+            print(f"ERRO: Formato de arquivo não suportado: {caminho_arquivo}")
+            return None
 
-        pyautogui.press('enter', presses=3, interval=0.5)
-        print("OK - ENTER 3x para fechar avisos.")
-        time.sleep(0.25)
+        # Remove espaços em branco dos nomes das colunas
+        df.columns = df.columns.str.strip()
 
-        pyautogui.click(508, 1015, duration=0.25)
-        print("OK - Clique em imprimir.")
-        time.sleep(0.25)
+        # Pega apenas os valores ÚNICOS da coluna "DOCUMENTO"
+        notas_unicas = df['DOCUMENTO'].unique()
 
-#VERIFICAR SE APARECE MAIS DE UMA JANELA
+        # Converte para uma lista de strings
+        lista_de_notas = [str(int(nota)) for nota in notas_unicas if pd.notna(nota)]
 
-        pyautogui.press('enter', presses=1, interval=0.5)
-        print("OK - ENTER 1x para fechar aviso de certificado.")
-        time.sleep(0.5)  # Tempo crucial para o sistema buscar a nota
+        print(f"Arquivo '{caminho_arquivo}' carregado com sucesso.")
+        print(f"{len(lista_de_notas)} notas fiscais ÚNICAS foram encontradas para automação.")
+        return lista_de_notas
 
-        pyautogui.click(330, 1009, duration=0.25)
-        print("OK - Clique em imprimir. ")
-        time.sleep(1.5)
-
-        pyautogui.click(83, 38, duration=0.25)
-        time.sleep(1)
-        pyautogui.press('enter')
-        print("OK - Comando para gerar PDF enviado.")
-        time.sleep(1)  # Tempo MUITO IMPORTANTE para a janela "Salvar como" do Windows abrir
-
-        nome_arquivo = f"DANFE {numero_da_nota_atual}"
-        print(f"OK - Salvando o arquivo como: {nome_arquivo}")
-        pyautogui.write(nome_arquivo, interval=0.05)
-        time.sleep(0.25)
-        pyautogui.press('enter')
-        time.sleep(1)  # Tempo para o arquivo ser salvo fisicamente no disco. Aumente se os arquivos forem grandes.
-
-        print("OK - Voltando para a tela inicial...")
-        pyautogui.press('esc', presses=2, interval=0.5)
-        time.sleep(1)
+    except FileNotFoundError:
+        print(f"ERRO CRÍTICO: Planilha '{caminho_arquivo}' não encontrada.")
+        return None
+    except KeyError:
+        print(f"ERRO CRÍTICO: A coluna 'DOCUMENTO' não foi encontrada na planilha.")
+        return None
+    except Exception as e:
+        print(f"Ocorreu um erro inesperado ao ler a planilha: {e}")
+        return None
 
 
-    except (
-            Exception) as e:
-        print(f"!!!!!!!!!! ERRO INESPERADO !!!!!!!!!!")
-        print(f"Ocorreu um erro grave ao processar a nota {numero_da_nota_atual}: {e}")
-        print("Tentando se recuperar e ir para a próxima nota.")
-        pyautogui.press('esc', presses=4, interval=0.5)  # Tenta fechar tudo
-        continue
+def processar_uma_nota(numero_nota):
+    """Executa a sequência completa de automação para um único número de nota fiscal."""
 
-print("\n\n--- FIM DA AUTOMAÇÃO ---")
-print("Todos os itens da lista foram processados.")
+    # 1. Digita o número da nota e busca
+    pyautogui.doubleClick(CAMPO_NOTA_FISCAL, duration=0.2)
+    time.sleep(0.2)
+    pyautogui.write(numero_nota, interval=0.05)
+    print(f"OK - Número da nota '{numero_nota}' digitado.")
+    pyautogui.press('enter')
+    print("OK - ENTER para buscar.")
+    time.sleep(1)  # Aumentado para dar tempo de busca
 
+    # 2. Fecha possíveis avisos do sistema
+    pyautogui.press('enter', presses=3, interval=0.3)
+    print("OK - ENTER 3x para fechar avisos.")
+    time.sleep(0.5)
+
+    # 3. Navega para a tela de impressão
+    pyautogui.click(BOTAO_IMPRIMIR_TELA_PRINCIPAL, duration=0.2)
+    print("OK - Clique para tela de impressão.")
+    time.sleep(0.5)
+
+    # 4. Fecha aviso de certificado e clica em imprimir novamente
+    pyautogui.press('enter')
+    print("OK - ENTER para fechar aviso de certificado.")
+    time.sleep(1)  # Aumentado para dar tempo da tela estabilizar
+
+    pyautogui.click(BOTAO_IMPRIMIR_TELA_SECUNDARIA, duration=0.2)
+    print("OK - Clique final em imprimir.")
+    time.sleep(2)  # Aumentado para dar tempo da interface de impressão carregar
+
+    # 5. Gera o PDF e salva o arquivo
+    pyautogui.click(ICONE_GERAR_PDF, duration=0.2)
+    time.sleep(0.5)
+    pyautogui.press('enter')
+    print("OK - Comando para gerar PDF enviado.")
+    time.sleep(2)  # Tempo MUITO IMPORTANTE para a janela "Salvar como" do Windows abrir
+
+    nome_arquivo = f"DANFE {numero_nota}"
+    print(f"OK - Salvando o arquivo como: {nome_arquivo}")
+    pyautogui.write(nome_arquivo, interval=0.05)
+    time.sleep(0.5)
+    pyautogui.press('enter')
+    time.sleep(2)  # Tempo para o arquivo ser salvo fisicamente no disco.
+
+    # 6. Volta para a tela inicial
+    print("OK - Voltando para a tela inicial...")
+    pyautogui.press('esc', presses=2, interval=0.5)
+    time.sleep(1.5)
+
+
+# --- SCRIPT PRINCIPAL ---
+
+def main():
+    """Função principal que orquestra a automação."""
+
+    caminho_do_arquivo = selecionar_arquivo()
+
+    if not caminho_do_arquivo:
+        print("Nenhum arquivo foi selecionado. Encerrando o programa.")
+        return
+
+    lista_de_notas = carregar_dados_notas(caminho_do_arquivo)
+
+    if lista_de_notas is None:
+        print("Automação não pode continuar devido a erro no carregamento dos dados.")
+        return
+
+    print("\nAutomação iniciando em 5 segundos...")
+    print("Por favor, deixe a janela do sistema NEO em primeiro plano e não mexa no mouse ou teclado.")
+    time.sleep(5)
+
+    for numero_da_nota_atual in lista_de_notas:
+        print(f"\n==================================================")
+        print(f"--- Processando a Nota Fiscal: {numero_da_nota_atual} ---")
+        print(f"==================================================")
+
+        try:
+            processar_uma_nota(numero_da_nota_atual)
+
+        except Exception as e:
+            print(f"!!!!!!!!!! ERRO INESPERADO !!!!!!!!!!")
+            print(f"Ocorreu um erro grave ao processar a nota {numero_da_nota_atual}: {e}")
+            print("Tentando se recuperar e ir para a próxima nota.")
+            pyautogui.press('esc', presses=4, interval=0.5)  # Tenta fechar tudo
+            continue
+
+    print("\n\n--- FIM DA AUTOMAÇÃO ---")
+    print("Todos os itens da lista foram processados.")
+
+
+# Garante que o script só vai rodar quando executado diretamente
+if __name__ == "__main__":
+    main()
