@@ -75,9 +75,13 @@ def escanear_pasta_pdf(caminho_pasta):
         return None
 
 
-def gerar_relatorio_excel(df_original, notas_encontradas, notas_faltando, pasta_saida):
+def gerar_relatorio_excel(df_original, notas_encontradas, notas_faltando, pasta_saida, nome_planilha_original):
     """Cria um novo arquivo Excel com as células coloridas."""
-    caminho_relatorio = os.path.join(pasta_saida, "RELATORIO_VERIFICACAO.xlsx")
+    # Remove a extensão do nome da planilha original para criar o nome do relatório
+    nome_base_planilha = os.path.splitext(nome_planilha_original)[0]
+    nome_relatorio = f"VERIFICACAO_{nome_base_planilha}.xlsx"
+    caminho_relatorio = os.path.join(pasta_saida, nome_relatorio)
+
     print(f"\nGerando relatório colorido em Excel: {caminho_relatorio}")
 
     # Define os preenchimentos de cor
@@ -99,7 +103,7 @@ def gerar_relatorio_excel(df_original, notas_encontradas, notas_faltando, pasta_
         ws.append(valores_linha)
 
         # Pega o número do documento da linha atual
-        num_doc = str(row['DOCUMENTO']) if pd.notna(row['DOCUMENTO']) else ''
+        num_doc = str(int(row['DOCUMENTO'])) if pd.notna(row['DOCUMENTO']) else ''
 
         # Encontra a célula correspondente na planilha
         celula_documento = ws.cell(row=ws.max_row, column=list(df_original.columns).index('DOCUMENTO') + 1)
@@ -161,7 +165,9 @@ def main():
         print("\nÓtima notícia! Todas as notas fiscais da planilha foram encontradas na pasta.")
 
     # Gera o relatório final em Excel
-    gerar_relatorio_excel(df_original, notas_encontradas, notas_faltando, os.path.dirname(caminho_planilha))
+    nome_original_planilha = os.path.basename(caminho_planilha)
+    gerar_relatorio_excel(df_original, notas_encontradas, notas_faltando, os.path.dirname(caminho_planilha),
+                          nome_original_planilha)
 
 
 if __name__ == "__main__":
