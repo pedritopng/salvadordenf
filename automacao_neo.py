@@ -177,38 +177,37 @@ def processar_uma_nota(numero_nota):
     Executa a sequência de cliques para gerar e salvar o PDF.
     Esta função representa uma única tentativa de processamento.
     """
-    executar_acao(pyautogui.doubleClick, CAMPO_NOTA_FISCAL, duration=0.1)
+    executar_acao(pyautogui.doubleClick, CAMPO_NOTA_FISCAL, duration=0)
     print("OK - Campo Nota Fiscal selecionado.")
-    executar_acao(time.sleep, 0.1)
+    #executar_acao(time.sleep, 0.1)
 
-    executar_acao(pyautogui.write, numero_nota, interval=0.01)
+    executar_acao(pyautogui.write, numero_nota, interval=0)
     print(f"OK - Número da nota '{numero_nota}' digitado.")
+    #executar_acao(time.sleep, 0.1)
+
+    executar_acao(pyautogui.click, BOTAO_MOSTRAR, duration=0)
+    print("OK - Clique botão mostrar.")
     executar_acao(time.sleep, 0.1)
 
-    executar_acao(pyautogui.click, BOTAO_MOSTRAR, duration=0.1)
-    print("OK - Clique botão mostrar.")
-    executar_acao(time.sleep, 0.25)
-
-    executar_acao(pyautogui.click, BOTAO_IMPRIMIR, duration=0.1)
+    executar_acao(pyautogui.click, BOTAO_IMPRIMIR, duration=0)
     print("OK - Clique botão imprimir.")
-    executar_acao(time.sleep, 0.5)
+    executar_acao(time.sleep, 0.3)
 
-    executar_acao(pyautogui.click, BOTAO_GERAR_PDF, duration=0.1)
+    executar_acao(pyautogui.click, BOTAO_GERAR_PDF, duration=0)
     print("OK - Clique no botão PDF.")
-    executar_acao(time.sleep, 0.5)
+    executar_acao(time.sleep, 0.1)
 
-    executar_acao(pyautogui.click, BOTAO_OK_PDF, duration=0.1)
+    executar_acao(pyautogui.click, BOTAO_OK_PDF, duration=0)
     print("OK - Clique no botão OK.")
-    executar_acao(time.sleep, 0.5)
+    executar_acao(time.sleep, 0.1)
 
     nome_arquivo = f"DANFE_{numero_nota}"
-    executar_acao(pyautogui.write, nome_arquivo, interval=0.01)
+    executar_acao(pyautogui.write, nome_arquivo, interval=0)
     print(f"OK - Tentando salvar arquivo como: {nome_arquivo}")
-    executar_acao(time.sleep, 0.2)
+    #executar_acao(time.sleep, 0.05)
 
-    executar_acao(pyautogui.click, BOTAO_SALVAR_PDF, duration=0.1)
+    executar_acao(pyautogui.click, BOTAO_SALVAR_PDF, duration=0)
     print("OK - Clique salvar pdf.")
-    executar_acao(time.sleep, 1)
 
 
 # --- SCRIPT PRINCIPAL ---
@@ -329,7 +328,7 @@ def main():
                     if os.path.exists(caminho_completo_arquivo):
                         verificado = True
                         break
-                    time.sleep(0.5)
+                    time.sleep(0.1)
 
             # 4. PEDIR AJUDA MANUAL (SE TUDO FALHOU)
             if not verificado:
@@ -353,7 +352,7 @@ def main():
                 print(f"SUCESSO: Arquivo confirmado na pasta de destino.")
                 executar_acao(pyautogui.click, BOTAO_FECHAR_NF, duration=0.1)
                 print(f"OK - Clique botão fechar NF.")
-                executar_acao(time.sleep, 0.5)
+                executar_acao(time.sleep, 0.2)
 
         except KeyboardInterrupt:
             interrompido_pelo_usuario = True

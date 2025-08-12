@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68f69be5-00e5-4c71-99de-1fbc63d38445" name="Changes" comment="segunda" />
+    <list default="true" id="68f69be5-00e5-4c71-99de-1fbc63d38445" name="Changes" comment="verificador atualizado">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automacao_neo.py" beforeDir="false" afterPath="$PROJECT_DIR$/automacao_neo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config_automacao.json" beforeDir="false" afterPath="$PROJECT_DIR$/config_automacao.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,27 +47,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.automacao_neo.executor": "Run",
-    "Python.click_pos.executor": "Run",
-    "Python.coordinates.executor": "Run",
-    "Python.verificador.executor": "Run",
-    "Python.verificar_notas.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.automacao_neo.executor&quot;: &quot;Run&quot;,
+    &quot;Python.click_pos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.coordinates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.verificador.executor&quot;: &quot;Run&quot;,
+    &quot;Python.verificar_notas.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -85,7 +89,12 @@
       <workItem from="1754759895368" duration="2546000" />
       <workItem from="1754762574834" duration="1649000" />
       <workItem from="1754766466265" duration="11447000" />
-      <workItem from="1754908834071" duration="1934000" />
+      <workItem from="1754908834071" duration="5920000" />
+      <workItem from="1754918976649" duration="6081000" />
+      <workItem from="1754932506413" duration="2086000" />
+      <workItem from="1754941822410" duration="2000" />
+      <workItem from="1754941827788" duration="1368000" />
+      <workItem from="1755015733258" duration="1422000" />
     </task>
     <task id="LOCAL-00001" summary="primeira versao funcionando 100%">
       <option name="closed" value="true" />
@@ -135,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754909952106</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="verificador atualizado">
+      <option name="closed" value="true" />
+      <created>1754911563210</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754911563210</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,13 +164,14 @@
     <MESSAGE value="add arquivos" />
     <MESSAGE value="robusto" />
     <MESSAGE value="segunda" />
-    <option name="LAST_COMMIT_MESSAGE" value="segunda" />
+    <MESSAGE value="verificador atualizado" />
+    <option name="LAST_COMMIT_MESSAGE" value="verificador atualizado" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$coordinates.coverage" NAME="coordinates Coverage Results" MODIFIED="1754666833852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$automacao_neo.coverage" NAME="automacao_neo Coverage Results" MODIFIED="1754796797209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$click_pos.coverage" NAME="click_pos Coverage Results" MODIFIED="1754796792864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$automacao_neo.coverage" NAME="automacao_neo Coverage Results" MODIFIED="1754929794655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$click_pos.coverage" NAME="click_pos Coverage Results" MODIFIED="1754928881589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$verificar_notas.coverage" NAME="verificar_notas Coverage Results" MODIFIED="1754788279935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$verificador.coverage" NAME="verificador Coverage Results" MODIFIED="1754910157333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SalvadorNotasFiscais$verificador.coverage" NAME="verificador Coverage Results" MODIFIED="1754930295015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
